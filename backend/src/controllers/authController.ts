@@ -19,11 +19,15 @@ export const registerUser = async (req: Request, res: Response) => {
       throw new Error('User already exists');
     }
 
+    // First user becomes Admin
+    const userCount = await User.countDocuments();
+    const assignedRole = userCount === 0 ? 'Admin' : (role || 'Member');
+
     const user = await User.create({
       name,
       email,
       password,
-      role: role || 'Member',
+      role: assignedRole,
     });
 
     if (user) {
