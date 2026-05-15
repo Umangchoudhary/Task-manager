@@ -1,0 +1,42 @@
+### Task Manager API Test Collection
+# You can use the "REST Client" VS Code extension to run these directly.
+@baseUrl = http://localhost:5000/api
+@token = YOUR_JWT_TOKEN_HERE
+
+### 1. Register a new user
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+    "name": "Test User",
+    "email": "test@test.com",
+    "password": "password123"
+}
+
+### 2. Login User
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "password123"
+}
+
+### 3. Get Projects (Requires Token)
+GET {{baseUrl}}/projects
+Authorization: Bearer {{token}}
+
+### 4. Create Project (Requires Token & Admin)
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "New Test Project",
+    "description": "Created via REST client"
+}
+
+### 5. Get Tasks (Requires Token)
+GET {{baseUrl}}/tasks
+Authorization: Bearer {{token}}
