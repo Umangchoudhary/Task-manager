@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Lock, Key, Globe, Plus, Trash2, Edit3, Copy, Check, Eye, EyeOff, Search
+  Lock, Key, Globe, Plus, Trash2, Edit3, Copy, Eye, EyeOff, Search
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../services/api';
 
 const Vault = () => {
-  const [credentials, setCredentials] = useState([]);
+  const [credentials, setCredentials] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [editingCred, setEditingCred] = useState(null);
-  const [showPassword, setShowPassword] = useState({});
+  const [editingCred, setEditingCred] = useState<any>(null);
+  const [showPassword, setShowPassword] = useState<any>({});
   const [searchTerm, setSearchTerm] = useState('');
 
   const [formData, setFormData] = useState({
@@ -37,16 +37,16 @@ const Vault = () => {
     fetchCredentials();
   }, []);
 
-  const handleCopy = (text, label) => {
+  const handleCopy = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast.success(`${label} copied to clipboard!`);
   };
 
-  const togglePassword = (id) => {
-    setShowPassword(prev => ({ ...prev, [id]: !prev[id] }));
+  const togglePassword = (id: string) => {
+    setShowPassword((prev: any) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       if (editingCred) {
@@ -65,7 +65,7 @@ const Vault = () => {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to remove this credential?')) {
       try {
         await api.delete(`/credentials/${id}`);

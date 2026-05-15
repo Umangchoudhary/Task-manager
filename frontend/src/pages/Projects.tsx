@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, FolderKanban, Users, Calendar } from 'lucide-react';
+import { Plus, FolderKanban, Users, Calendar } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import api from '../services/api';
 
@@ -9,7 +9,7 @@ const Projects = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newProject, setNewProject] = useState({ title: '', description: '', teamMembers: [] });
+  const [newProject, setNewProject] = useState<{title: string, description: string, teamMembers: string[]}>({ title: '', description: '', teamMembers: [] });
   
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const isAdmin = user.role === 'Admin';

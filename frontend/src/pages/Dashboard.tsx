@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  CheckCircle, Clock, AlertTriangle, FolderKanban,
+  AlertTriangle, FolderKanban,
   TrendingUp, BarChart2,
   CheckSquare
 } from 'lucide-react';

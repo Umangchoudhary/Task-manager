@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search, Filter, MoreVertical } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import api from '../services/api';
 
 const Tasks = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any[]>([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('All');
   
   const [users, setUsers] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -254,8 +253,5 @@ const Tasks = () => {
     </div>
   );
 };
-
-// Quick fix for missing icon in import
-import { MoreVertical } from 'lucide-react';
 
 export default Tasks;
