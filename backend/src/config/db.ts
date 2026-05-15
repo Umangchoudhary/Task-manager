@@ -1,4 +1,10 @@
 import mongoose from 'mongoose';
+import crypto from 'crypto';
+
+// Polyfill for environments where globalThis.crypto is missing (needed by some mongodb driver versions)
+if (typeof globalThis.crypto === 'undefined') {
+  (globalThis as any).crypto = crypto;
+}
 
 const connectDB = async () => {
   const uri = process.env.MONGODB_URI;
